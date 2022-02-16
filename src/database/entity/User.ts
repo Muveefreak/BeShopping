@@ -21,7 +21,7 @@ export class User {
 
     @Column()
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     hashPassword() {
         this.passwordHash = bcrypt.hashSync(this.passwordHash, 8);

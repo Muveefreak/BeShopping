@@ -21,7 +21,7 @@ export class UserRepo extends Repository<User> {
 
     createUser = async (userEntity : User) => {
             const now = new Date();
-            userEntity.createdAt = now;
+            userEntity.created_at = now;
             const user = this.create(userEntity);
             await this.save(user).catch((err) => {
                 console.log("Error: ", err);
