@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# BeShopping TypeOrm NodeJS Project
 
 Steps to run this project:
 
