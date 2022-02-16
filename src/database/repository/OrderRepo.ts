@@ -13,9 +13,23 @@ export class OrderRepo extends Repository<Order> {
         })
     }
 
+    removeOrder = async (orderId : string) => {
+        const order = this.delete(orderId);
+        // await this.save(order).catch((err) => {
+        //     console.log("Error: ", err);
+        // })
+    }
+
     findById = async(id : string) => {
         return await this.findOne({ where: {id : id}}).catch((err) => {
             console.log("Error: ", err);
+        });
+    }
+
+    findByUserId = async(id : string) => {
+        return await this.find({ where: {user_id : id}, relations:["orderItems"]}).catch((err) => {
+            console.log("Error: ", err);
+            throw new InternalError(`Unable to complete request', ${err?.sqlMessage}`);
         });
     }
 

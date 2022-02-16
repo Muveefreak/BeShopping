@@ -56,7 +56,6 @@ export const JoiAuthBearer = () =>
 export const signJwt = (user: User) => {
   const token = jwt.sign({userId: user.id, username: user.email, role: user.role},
     jwtSecret, { expiresIn: '1h' });
-    let firstTimeLogIn = false;
     try {
       return token;
     } catch(err) {

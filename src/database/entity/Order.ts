@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, CreateDateColumn } from "typeorm";
 import { OrderItem } from "./OrderItem";
 import { User } from "./User";
 
@@ -13,14 +13,10 @@ export class Order {
     @Column()
     user_id: string;
 
-    @ManyToOne(type => User)
-    @JoinColumn({name: 'user_id', referencedColumnName: 'id'})
-    user: User;
+    @Column()
+    @CreateDateColumn()
+    created_at: Date;
 
-    @OneToMany(type => OrderItem, orderItem => orderItem.order, {
-        cascade: true,
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-    })
-    orderItems: Array<OrderItem>;
+    @OneToMany(type => OrderItem, orderItem => orderItem.order)
+    orderItems: OrderItem[];
 }

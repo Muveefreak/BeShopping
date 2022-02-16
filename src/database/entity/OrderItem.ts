@@ -15,7 +15,11 @@ export class OrderItem {
     @Column()
     order_id: string;
 
-    @ManyToOne(type => Order)
+    @ManyToOne(type => Order, order => order.orderItems, {
+        cascade: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+    })
     @JoinColumn({name: 'order_id', referencedColumnName: 'id'})
     order: Order;
 }
