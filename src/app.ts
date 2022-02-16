@@ -1,7 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { corsUrl } from './config';
+import { corsUrl, environment } from './config';
+import './database'; // initialize database
 
 process.on('uncaughtException', (e) => {
   console.error(e);
