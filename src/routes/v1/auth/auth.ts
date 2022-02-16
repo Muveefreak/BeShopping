@@ -1,8 +1,8 @@
 import { User } from "../../../database/entity/User";
 import express from 'express';
 import { SuccessResponse } from '../../../core/ApiResponse';
-import { BadRequestError, NoEntryError, NotFoundError } from '../../../core/ApiError';
-import validator from '../../../helpers/validator';
+import { BadRequestError, NotFoundError } from '../../../core/ApiError';
+import validator, {signJwt} from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import _ from 'lodash';
@@ -22,7 +22,7 @@ router.post(
     if(!user.validateUnencryptedPassword(req.body.password)) {
     throw new BadRequestError('Incorrect email or password'); }
     
-    new SuccessResponse('Login successfully', user).send(res);
+    new SuccessResponse('Login successfully', signJwt(user)).send(res);
   }),
 );
 
