@@ -1,5 +1,10 @@
-import {createConnection, Connection} from "typeorm";
+import {createConnection} from "typeorm";
 import { db } from '../config';
+import { Category } from "./entity/Category";
+import { Order } from "./entity/Order";
+import { OrderItem } from "./entity/OrderItem";
+import { Product } from "./entity/Product";
+import { User } from "./entity/User";
 
 const connection = createConnection({
     type: "mysql",
@@ -9,6 +14,7 @@ const connection = createConnection({
     password: db.password,
     database: db.name,
     entities: [
+        Product, Category, Order, User, OrderItem
     ],
     synchronize: true
 })
